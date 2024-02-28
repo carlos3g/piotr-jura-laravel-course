@@ -6,6 +6,7 @@ services:
             args:
                 WWWGROUP: '${WWWGROUP}'
         image: sail-8.3/app
+        container_name: l10-task-list-api
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
