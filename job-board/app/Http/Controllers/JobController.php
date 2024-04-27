@@ -12,7 +12,15 @@ class JobController extends Controller
      */
     public function index()
     {
-        return view('job.index', ['jobs' => Job::all()]);
+        $filters = request()->only(
+            'search',
+            'min_salary',
+            'max_salary',
+            'experience',
+            'category'
+        );
+
+        return view('job.index', ['jobs' => Job::filter($filters)->get()]);
     }
 
     /**
@@ -34,9 +42,9 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Job $job)
     {
-        //
+        return view('job.show', compact('job'));
     }
 
     /**
